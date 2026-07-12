@@ -48,7 +48,11 @@ exports.handler = async (event) => {
   };
 
   try {
-    const store = getStore("salon-paps-bookings");
+    const store = getStore({
+      name: "salon-paps-bookings",
+      siteID: process.env.BLOBS_SITE_ID,
+      token: process.env.BLOBS_TOKEN,
+    });
 
     if (event.httpMethod === "GET") {
       const date = (event.queryStringParameters || {}).date;
